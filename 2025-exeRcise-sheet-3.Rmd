@@ -22,3 +22,87 @@ Disadvantages of Git:
 ## Exercise 2
 ### a
 https://github.com/umin1203/exeRcise-sheet-3
+
+## Exercise 3
+
+### a
+```{r}
+
+library(tidyverse)
+
+pixar_films <- read_csv("data/pixar_films.csv")
+
+pixar_films <- pixar_films %>%
+  filter(!is.na(film) & film != "")
+
+unique(pixar_films$film_rating)
+
+pixar_films <- pixar_films %>%
+  mutate(film_rating = as.factor(film_rating))
+
+head(pixar_films, 10)
+
+```
+The variable `film_rating` contains the following values: G, PG. These represent audience suitability ratings, with G being suitable for all ages, PG suggesting parental guidance.
+Converting this variable into a factor is appropriate because the ratings are categorical and represent qualitative levels rather than numerical values.
+
+## b
+```{r}
+
+series_keywords <- c("Toy Story", "Cars", "Finding", "Incredibles", "Monsters")
+
+series_list <- lapply(series_keywords, function(keyword) {
+  pixar_films %>%
+    filter(str_detect(film, keyword)) %>%
+    mutate(series = keyword)
+})
+
+series_df <- bind_rows(series_list) %>%
+  group_by(series) %>%
+  summarise(
+    titles = paste(film, collapse = ", "),
+    n_films = n(),
+    .groups = "drop"
+  )
+
+series_df
+
+```
+
+### c
+```{r}
+public_response <- read_csv("data/public_response.csv")
+
+cinema_levels <- c("A-", "A", "A+")
+public_response <- public_response %>%
+  mutate(cinema_score = factor(cinema_score, levels = cinema_levels, ordered = TRUE))
+
+combined_df <- left_join(pixar_films, public_response, by = "film")
+
+head(combined_df,10)
+```
+
+
+### d
+```{r}
+combined_df <- combined_df %>%
+  arrange(series, release_date) %>%
+  mutate(
+    series_title = paste(series, film, sep = " - "),
+    series_title = fct_inorder(series_title)
+  )
+
+ggplot(combined_df, aes(x = series_title, y = cinema_score, fill = series)) +
+  geom_col() +
+  labs(
+    title = "Cinema Score of Pixar Films Grouped by Series",
+    x = "Film (Grouped by Series)",
+    y = "Cinema Score",
+    fill = "Series"
+  ) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+Based on the bar plot grouped by series and ordered by release date, we observe a general pattern:
+the scores tend to decline in later films of a series.
