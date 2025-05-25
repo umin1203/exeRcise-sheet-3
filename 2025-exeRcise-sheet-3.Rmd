@@ -1,0 +1,24 @@
+---
+title: "2025-exeRcise-sheet-3"
+author: "Yoomin Lee (12962884)"
+date: "2025-05-25"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Exercise 1
+### d
+Advantages of Git:
+1. Allows you to track changes and revert to previous versions if needed.
+2. Makes collaboration easy by managing changes from multiple contributors.
+
+Disadvantages of Git:
+1. Can be difficult to learn for beginners due to unfamiliar commands and concepts.
+2. Merge conflicts can be confusing and hard to resolve.
+
+## Exercise 2
+### a
+https://github.com/umin1203/exeRcise-sheet-3
