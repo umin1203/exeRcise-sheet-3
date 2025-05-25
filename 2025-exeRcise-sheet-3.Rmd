@@ -3,6 +3,9 @@ title: "2025-exeRcise-sheet-3"
 author: "Yoomin Lee (12962884)"
 date: "2025-05-25"
 output: html_document
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
 ```{r setup, include=FALSE}
@@ -10,22 +13,27 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Exercise 1
-### d
-Advantages of Git:
-1. Allows you to track changes and revert to previous versions if needed.
-2. Makes collaboration easy by managing changes from multiple contributors.
 
-Disadvantages of Git:
-1. Can be difficult to learn for beginners due to unfamiliar commands and concepts.
-2. Merge conflicts can be confusing and hard to resolve.
+### d
+
+Advantages of Git: 1. Allows you to track changes and revert to previous
+versions if needed. 2. Makes collaboration easy by managing changes from
+multiple contributors.
+
+Disadvantages of Git: 1. Can be difficult to learn for beginners due to
+unfamiliar commands and concepts. 2. Merge conflicts can be confusing
+and hard to resolve.
 
 ## Exercise 2
+
 ### a
-https://github.com/umin1203/exeRcise-sheet-3
+
+<https://github.com/umin1203/exeRcise-sheet-3>
 
 ## Exercise 3
 
 ### a
+
 ```{r}
 
 library(tidyverse)
@@ -43,10 +51,15 @@ pixar_films <- pixar_films %>%
 head(pixar_films, 10)
 
 ```
-The variable `film_rating` contains the following values: G, PG. These represent audience suitability ratings, with G being suitable for all ages, PG suggesting parental guidance.
-Converting this variable into a factor is appropriate because the ratings are categorical and represent qualitative levels rather than numerical values.
+
+The variable `film_rating` contains the following values: G, PG. These
+represent audience suitability ratings, with G being suitable for all
+ages, PG suggesting parental guidance. Converting this variable into a
+factor is appropriate because the ratings are categorical and represent
+qualitative levels rather than numerical values.
 
 ## b
+
 ```{r}
 
 series_keywords <- c("Toy Story", "Cars", "Finding", "Incredibles", "Monsters")
@@ -70,6 +83,7 @@ series_df
 ```
 
 ### c
+
 ```{r}
 public_response <- read_csv("data/public_response.csv")
 
@@ -82,8 +96,8 @@ combined_df <- left_join(pixar_films, public_response, by = "film")
 head(combined_df,10)
 ```
 
-
 ### d
+
 ```{r}
 combined_df <- combined_df %>%
   arrange(series, release_date) %>%
@@ -104,5 +118,49 @@ ggplot(combined_df, aes(x = series_title, y = cinema_score, fill = series)) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 ```
-Based on the bar plot grouped by series and ordered by release date, we observe a general pattern:
-the scores tend to decline in later films of a series.
+
+Based on the bar plot grouped by series and ordered by release date, we
+observe a general pattern: the scores tend to decline in later films of
+a series.
+
+## Exercise 4
+
+### c
+
+Dataset Name : Life Expectancy
+
+Link :
+
+<https://github.com/owid/owid-datasets/blob/master/datasets/Life%20expectancy%20-%20OECD/Life%20expectancy%20-%20OECD.csv>
+
+### d
+How has life expectancy changed over time in South Korea compared to the Germany?
+
+### e
+```{r}
+library(tidyverse)
+
+life <- read_csv("data/Life expectancy - OECD.csv")
+
+# 필요한 컬럼만 선택
+life_clean <- life %>%
+  filter(Entity %in% c("South Korea", "Germany"))
+
+head(life_clean, 10)
+
+```
+
+### f
+```{r}
+ggplot(life_clean, aes(x = Year, y = `Life Expectancy (OECD)`, color = Entity)) +
+  geom_line(size = 1.2) +
+  labs(
+    title = "Life Expectancy: South Korea vs. Germany",
+    x = "Year",
+    y = "Life Expectancy (years)",
+    caption = "Source: Our World in Data"
+  ) +
+  theme_minimal()
+
+```
+Line plot comparing the life expectancy trends in South Korea and Germany over time. Both countries show significant improvements, with South Korea catching up rapidly since the mid-20th century
