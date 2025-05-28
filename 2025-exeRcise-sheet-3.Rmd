@@ -127,22 +127,24 @@ a series.
 
 ### c
 
-Dataset Name : Life Expectancy
+-   Dataset Name : Life Expectancy
 
-Link :
+-   Link :
 
 <https://github.com/owid/owid-datasets/blob/master/datasets/Life%20expectancy%20-%20OECD/Life%20expectancy%20-%20OECD.csv>
 
 ### d
-How has life expectancy changed over time in South Korea compared to the Germany?
+
+How has life expectancy changed over time in South Korea compared to the
+Germany?
 
 ### e
+
 ```{r}
 library(tidyverse)
 
 life <- read_csv("data/Life expectancy - OECD.csv")
 
-# 필요한 컬럼만 선택
 life_clean <- life %>%
   filter(Entity %in% c("South Korea", "Germany"))
 
@@ -151,6 +153,7 @@ head(life_clean, 10)
 ```
 
 ### f
+
 ```{r}
 ggplot(life_clean, aes(x = Year, y = `Life Expectancy (OECD)`, color = Entity)) +
   geom_line(size = 1.2) +
@@ -163,4 +166,7 @@ ggplot(life_clean, aes(x = Year, y = `Life Expectancy (OECD)`, color = Entity)) 
   theme_minimal()
 
 ```
-Line plot comparing the life expectancy trends in South Korea and Germany over time. Both countries show significant improvements, with South Korea catching up rapidly since the mid-20th century
+
+Line plot comparing the life expectancy trends in South Korea and
+Germany over time. Both countries show significant improvements, with
+South Korea catching up rapidly since the mid-20th century
