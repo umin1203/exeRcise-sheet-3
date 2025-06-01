@@ -30,3 +30,28 @@ and hard to resolve.
 
 <https://github.com/umin1203/exeRcise-sheet-3>
 
+
+## Exercise 3
+
+### a
+
+```{r}
+
+library(tidyverse)
+
+pixar_films <- read_csv("data/pixar_films.csv")
+
+pixar_films <- pixar_films %>%
+  filter(!is.na(film) & film != "")
+
+unique(pixar_films$film_rating)
+
+pixar_films <- pixar_films %>%
+  mutate(film_rating = as.factor(film_rating))
+
+head(pixar_films, 10)
+
+```
+
+The variable `film_rating` contains the following values: G, PG, NA. These represent audience suitability ratings, with G being suitable for all ages, PG suggesting parental guidance. And NA means, that this data is not available. Converting this variable into a factor is appropriate because the ratings are categorical and represent
+qualitative levels rather than numerical values.
