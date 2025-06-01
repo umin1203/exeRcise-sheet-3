@@ -143,3 +143,20 @@ a series.
 
 How has life expectancy changed over time in South Korea compared to the
 Germany?
+
+
+### e
+
+```{r}
+library(tidyverse)
+
+life <- read_csv("data/Life expectancy - OECD.csv")
+
+life_clean <- life %>%
+  filter(Entity %in% c("South Korea", "Germany"))
+
+head(life_clean, 5)
+
+```
+
+
