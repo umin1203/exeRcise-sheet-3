@@ -160,3 +160,21 @@ head(life_clean, 5)
 ```
 
 
+
+### f
+
+```{r fig.cap = "Line plot comparing the life expectancy"}
+ggplot(life_clean, aes(x = Year, y = `Life Expectancy (OECD)`, color = Entity)) +
+  geom_line(size = 1.2) +
+  labs(
+    title = "Life Expectancy: South Korea vs. Germany",
+    subtitle = "South Korea(1970-2015), Germany(1960-2015)",
+    x = "Year",
+    y = "Life Expectancy (years)",
+    caption = "Source: Our World in Data"
+  ) +
+  theme_minimal()
+
+```
+
+Line plot comparing the life expectancy trends in South Korea and Germany from 1960,70 to 2015. Both countries show significant improvements, with South Korea catching up rapidly since the mid-20th century.
