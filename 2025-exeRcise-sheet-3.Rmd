@@ -137,3 +137,9 @@ a series.
 -   Link :
 
 <https://github.com/owid/owid-datasets/blob/master/datasets/Life%20expectancy%20-%20OECD/Life%20expectancy%20-%20OECD.csv>
+
+
+### d
+
+How has life expectancy changed over time in South Korea compared to the
+Germany?
