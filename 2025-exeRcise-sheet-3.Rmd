@@ -55,3 +55,31 @@ head(pixar_films, 10)
 
 The variable `film_rating` contains the following values: G, PG, NA. These represent audience suitability ratings, with G being suitable for all ages, PG suggesting parental guidance. And NA means, that this data is not available. Converting this variable into a factor is appropriate because the ratings are categorical and represent
 qualitative levels rather than numerical values.
+
+
+## b
+
+```{r}
+
+pixar_films <- pixar_films %>%
+  mutate(series = case_when(
+    str_detect(film, "Toy Story") ~ "Toy Story",
+    str_detect(film, "Cars") ~ "Cars",
+    str_detect(film, "Finding") ~ "Finding",
+    str_detect(film, "Incredibles") ~ "Incredibles",
+    str_detect(film, "Monsters") ~ "Monsters",
+    TRUE ~ NA_character_
+  ))
+
+series_df <- pixar_films %>%
+  filter(!is.na(series)) %>% 
+  group_by(series) %>%
+  summarise(
+    titles = paste(film, collapse = ", "),
+    n_films = n(),
+    .groups = "drop"
+  )
+
+series_df
+
+```
