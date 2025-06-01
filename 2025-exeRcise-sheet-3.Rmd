@@ -83,3 +83,19 @@ series_df <- pixar_films %>%
 series_df
 
 ```
+
+
+### c
+
+```{r}
+public_response <- read_csv("data/public_response.csv")
+
+cinema_levels <- c("A-", "A", "A+")
+public_response <- public_response %>%
+  mutate(cinema_score = factor(cinema_score, levels = cinema_levels, ordered = TRUE))
+
+combined_df <- left_join(pixar_films, public_response, by = "film")
+
+head(combined_df,10)
+```
+
