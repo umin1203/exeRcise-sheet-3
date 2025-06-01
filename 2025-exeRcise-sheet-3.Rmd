@@ -52,10 +52,7 @@ head(pixar_films, 10)
 
 ```
 
-The variable `film_rating` contains the following values: G, PG. These
-represent audience suitability ratings, with G being suitable for all
-ages, PG suggesting parental guidance. Converting this variable into a
-factor is appropriate because the ratings are categorical and represent
+The variable `film_rating` contains the following values: G, PG, NA. These represent audience suitability ratings, with G being suitable for all ages, PG suggesting parental guidance. And NA means  Converting this variable into a factor is appropriate because the ratings are categorical and represent
 qualitative levels rather than numerical values.
 
 ## b
@@ -151,7 +148,7 @@ life <- read_csv("data/Life expectancy - OECD.csv")
 life_clean <- life %>%
   filter(Entity %in% c("South Korea", "Germany"))
 
-head(life_clean, 10)
+head(life_clean, 5)
 
 ```
 
@@ -162,6 +159,7 @@ ggplot(life_clean, aes(x = Year, y = `Life Expectancy (OECD)`, color = Entity)) 
   geom_line(size = 1.2) +
   labs(
     title = "Life Expectancy: South Korea vs. Germany",
+    subtitle = "South Korea(1970-2015), Germany(1960-2015)",
     x = "Year",
     y = "Life Expectancy (years)",
     caption = "Source: Our World in Data"
@@ -170,4 +168,4 @@ ggplot(life_clean, aes(x = Year, y = `Life Expectancy (OECD)`, color = Entity)) 
 
 ```
 
-Line plot comparing the life expectancy trends in South Korea and Germany over time. Both countries show significant improvements, with South Korea catching up rapidly since the mid-20th century
+Line plot comparing the life expectancy trends in South Korea and Germany from 1960,70 to 2015. Both countries show significant improvements, with South Korea catching up rapidly since the mid-20th century
