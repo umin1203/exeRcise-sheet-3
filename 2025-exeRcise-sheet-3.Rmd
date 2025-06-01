@@ -126,3 +126,14 @@ ggplot(combined_df, aes(x = series_title, y = cinema_score, fill = series)) +
 
 Based on the bar plot grouped by series and ordered by release date, we observe a general pattern: the scores tend to decline in later films of
 a series.
+
+
+## Exercise 4
+
+### c
+
+-   Dataset Name : Life Expectancy
+
+-   Link :
+
+<https://github.com/owid/owid-datasets/blob/master/datasets/Life%20expectancy%20-%20OECD/Life%20expectancy%20-%20OECD.csv>
