@@ -99,3 +99,30 @@ combined_df <- left_join(pixar_films, public_response, by = "film")
 head(combined_df,10)
 ```
 
+
+### d
+
+```{r}
+combined_df <- combined_df %>%
+  filter(!is.na(series), !is.na(cinema_score)) %>% 
+  arrange(series, release_date) %>%
+  mutate(
+    series_title = paste(series, film, sep = " - "),
+    series_title = fct_inorder(series_title)
+  )
+
+ggplot(combined_df, aes(x = series_title, y = cinema_score, fill = series)) +
+  geom_col() +
+  labs(
+    title = "Cinema Score of Pixar Films Grouped by Series",
+    x = "Film (Grouped by Series)",
+    y = "Cinema Score",
+    fill = "Series"
+  ) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+
+Based on the bar plot grouped by series and ordered by release date, we observe a general pattern: the scores tend to decline in later films of
+a series.
