@@ -23,9 +23,3 @@ multiple contributors.
 Disadvantages of Git: 1. Can be difficult to learn for beginners due to
 unfamiliar commands and concepts. 2. Merge conflicts can be confusing
 and hard to resolve.
-
-## Exercise 2
-
-### a
-
-<https://github.com/umin1203/exeRcise-sheet-3>
